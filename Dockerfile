@@ -2,16 +2,16 @@ FROM node:14
 
 WORKDIR /app
 
-#El . hace referencia al WORKDIR previamente establecido.
 COPY package.json .
 
-#RUN se ejecuta cuando una imagen es creada.
 RUN npm install
 
 COPY . .
 
-#Esto es recomendado, realmente el puerto se expone al correr el contenedor con docker run -p
 EXPOSE 80
 
+#Especifica el volumen en el cual se guardará la información.
+#VOLUME [ "/app/feedback" ]
+
 #CMD se ejecuta cuando un contenedor es creado.
-CMD ["node", "server.js"]
+CMD [ "node", "server.js" ]
